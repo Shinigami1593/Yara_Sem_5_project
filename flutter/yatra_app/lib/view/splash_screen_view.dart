@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:yatra_app/model/splash_model.dart';
 import 'package:yatra_app/view/signin_view.dart';
+// ignore: depend_on_referenced_packages
+import 'package:page_transition/page_transition.dart';
+
 
 class SplashScreenView extends StatelessWidget {
   final SplashModel _viewmodel = SplashModel();
@@ -21,7 +24,8 @@ class SplashScreenView extends StatelessWidget {
             backgroundColor: Colors.white,
             splashTransition: SplashTransition.fadeTransition,
             duration: 2500,
-            nextScreen: const SigninView(),
+            nextScreen: const SignInView(), // Your login screen
+            pageTransitionType: PageTransitionType.bottomToTop,
           );
         } else {
           return Scaffold(
