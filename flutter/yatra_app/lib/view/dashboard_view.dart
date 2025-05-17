@@ -65,10 +65,34 @@ class DashboardView extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 16,
-                  color: Colors.black
+                  color: Colors.black87
                 ),
-              )
+              ),
 
+              SizedBox(height: 40),
+
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: (){
+                    //NAvigation handle:
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFF00723F),
+                    padding: EdgeInsets.symmetric(vertical: 14),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(19)
+                    )
+                  ),
+                  child: Text(
+                    'Start Your Journey',
+                    style: TextStyle(
+                      fontSize: 19,
+                      color: Colors.white
+                    ),
+                  )
+                  ),
+                ), 
             ],
           ),
         ),
