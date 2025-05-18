@@ -16,18 +16,32 @@ class _SignInViewState extends State<SignInView> {
   String password = '';
   String? error;
 
-  void _login() {
-    if (model.validateCredentials(email.trim(), password.trim())) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const DashboardView()),
-      );
-    } else {
-      setState(() {
-        error = 'Invalid credentials';
-      });
-    }
+void _login() {
+  final isValid = model.validateCredentials(email.trim(), password.trim());
+
+  // create the snackbar first
+  final snackBar = SnackBar(
+    content: Text(
+      isValid ? 'Login successful' : 'Invalid credentials',
+      style: const TextStyle(color: Colors.white),
+    ),
+    backgroundColor: (isValid ? Colors.green : Colors.red),
+    behavior: SnackBarBehavior.floating,   // optional: hovers above bottom
+    margin: const EdgeInsets.all(16),      // optional: adds a nice gap
+    duration: const Duration(seconds: 2),  // feel free to tweak
+  );
+
+  // show the snackbar
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+  if (isValid) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => const DashboardView()),
+    );
   }
+}
+
 
   @override
   Widget build(BuildContext context) {
