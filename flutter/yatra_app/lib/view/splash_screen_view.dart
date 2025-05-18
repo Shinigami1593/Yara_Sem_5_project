@@ -18,15 +18,7 @@ class SplashScreenView extends StatelessWidget {
       future: _viewmodel.initApp(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          return AnimatedSplashScreen(
-            splash: Lottie.asset('assets/animation/bus_animation.json', height: 200),
-            splashIconSize: 200,
-            backgroundColor: Colors.white,
-            splashTransition: SplashTransition.fadeTransition,
-            duration: 2500,
-            nextScreen: const SignInView(), // Your login screen
-            pageTransitionType: PageTransitionType.bottomToTop,
-          );
+          
         } else {
           return Scaffold(
             backgroundColor: Colors.white,
