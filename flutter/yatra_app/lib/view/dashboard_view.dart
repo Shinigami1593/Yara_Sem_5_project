@@ -6,7 +6,7 @@ class DashboardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFF1A3C34),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: Center(
@@ -14,8 +14,8 @@ class DashboardView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                width: 200,
-                height: 200,
+                width: 320,
+                height: 320,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.green,
@@ -32,7 +32,7 @@ class DashboardView extends StatelessWidget {
                     //NAvigation handle:
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF00723F),
+                    backgroundColor: Color(0xFF00C853),
                     padding: EdgeInsets.symmetric(vertical: 14),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(19)
