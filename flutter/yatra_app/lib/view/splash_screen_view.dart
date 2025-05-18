@@ -19,7 +19,7 @@ class SplashScreenView extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return AnimatedSplashScreen(
-            
+            splash: Lottie.asset('assets/animation/bus_animation.json', height: 200),
             splashIconSize: 200,
             backgroundColor: Colors.white,
             splashTransition: SplashTransition.fadeTransition,
