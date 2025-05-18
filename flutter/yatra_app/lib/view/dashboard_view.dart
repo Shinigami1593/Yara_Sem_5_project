@@ -14,59 +14,13 @@ class DashboardView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                width: 80,
-                height: 80,
+                width: 200,
+                height: 200,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.green,
                 ),
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Positioned(
-                      left: 10,
-                      child: CircleAvatar(
-                        radius: 18,
-                        backgroundColor: Colors.greenAccent,
-                      )
-                    ),
-                    Positioned(
-                      right: 10,
-                      child: CircleAvatar(
-                        radius: 18,
-                        backgroundColor: Colors.teal,
-                      )
-                    ),
-                    Positioned(
-                      top: 0,
-                      child: CircleAvatar(
-                        radius: 20,
-                        backgroundColor: Colors.green[700],
-                      )
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 32),
-
-              Text(
-                'Yatra',
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black
-                ),
-              ),
-              
-              SizedBox(height: 8),
-
-              Text(
-                'Embark on your journey with Yatra\ntoday!',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black87
-                ),
+                child: Image.asset("assets/icons/yatra(logo).png")
               ),
 
               SizedBox(height: 40),
