@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+// import 'package:yatra_app/view/bottom_navigation/bottom_navigation.dart';
+import 'package:yatra_app/view/bottom_navigation/dashboard_view.dart';
 import '../model/signin_model.dart';
-import 'dashboard_view.dart';
+// import 'bottom_navigation.dart/dashboard_view.dart';
 import 'signup_view.dart';
 
 class SignInView extends StatefulWidget {
