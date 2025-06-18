@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yatra_app/themes/dashboard_theme.dart';
+import 'package:yatra_app/app/themes/dashboard_theme.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

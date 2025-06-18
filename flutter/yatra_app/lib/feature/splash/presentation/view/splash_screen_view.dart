@@ -2,7 +2,7 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:yatra_app/model/splash_model.dart';
-import 'package:yatra_app/view/signin_view.dart';
+import 'package:yatra_app/feature/auth/presentation/view/signin_view.dart';
 // ignore: depend_on_referenced_packages
 import 'package:page_transition/page_transition.dart';
 
