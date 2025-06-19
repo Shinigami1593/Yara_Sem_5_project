@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class DashboardTheme {
   static const Color primaryColor = Color(0xFF00C853);
   static const Color accentColor = Color(0xFF66BB6A);
-  static const Color backgroundColor = Color(0xFF1B1F1D);
+  static const Color backgroundColor = Color.fromARGB(255, 4, 32, 18);
   static const Color textColor = Colors.white;
 
   static const EdgeInsets defaultPadding = EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0);
