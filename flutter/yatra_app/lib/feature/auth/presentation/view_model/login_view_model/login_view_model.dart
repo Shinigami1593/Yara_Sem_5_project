@@ -7,7 +7,6 @@ import 'package:yatra_app/feature/auth/presentation/view/signup_view.dart';
 import 'package:yatra_app/feature/auth/presentation/view_model/login_view_model/login_event.dart';
 import 'package:yatra_app/feature/auth/presentation/view_model/login_view_model/login_state.dart';
 import 'package:yatra_app/feature/auth/presentation/view_model/register_view_model/register_view_model.dart';
-import 'package:yatra_app/feature/home/presentation/view/bottom_navigation/home_view.dart';
 import 'package:yatra_app/feature/home/presentation/view/dashboard_view.dart';
 import 'package:yatra_app/feature/home/presentation/view_model/dashboard_view_model.dart';
 
