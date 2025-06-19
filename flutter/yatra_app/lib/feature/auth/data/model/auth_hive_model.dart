@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:uuid/uuid.dart';
+import 'package:yatra_app/feature/auth/domain/entity/user_entity.dart';
 
 part 'auth_hive_model.g.dart';
 
@@ -31,6 +32,24 @@ class UserHiveModel extends Equatable {
         name = '',
         email = '',
         password = '';
+
+  factory UserHiveModel.fromEntity(UserEntity entity) {
+    return UserHiveModel(
+      userId: entity.userId,
+      name: entity.name,
+      email: entity.email,
+      password: entity.password,
+    );
+  }
+
+  UserEntity toEntity() {
+    return UserEntity(
+      userId: userId,
+      name: name,
+      email: email,
+      password: password,
+    );
+  }
 
   @override
   List<Object?> get props => [userId, name, email, password];
