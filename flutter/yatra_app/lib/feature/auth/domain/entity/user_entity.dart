@@ -1,4 +1,5 @@
 
+import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
 class UserEntity extends Equatable {
@@ -6,6 +7,8 @@ class UserEntity extends Equatable {
   final String name;
   final String email;
   final String password;
+  final String firstName;
+  final String lastName;
   final String? image; // Optional, added after login
 
   const UserEntity({
@@ -13,6 +16,8 @@ class UserEntity extends Equatable {
     required this.name,
     required this.email,
     required this.password,
+    required this.firstName,
+    required this.lastName,
     this.image,
   });
 
@@ -22,6 +27,8 @@ class UserEntity extends Equatable {
     name,
     email,
     password,
+    firstName,
+    lastName,
     image,
   ];
 }

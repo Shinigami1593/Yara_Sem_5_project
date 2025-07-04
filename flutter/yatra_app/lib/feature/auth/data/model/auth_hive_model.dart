@@ -48,6 +48,8 @@ class UserHiveModel extends Equatable {
       name: name,
       email: email,
       password: password,
+      firstName: '',
+      lastName: ''
     );
   }
 

@@ -90,7 +90,7 @@ class _SignInViewState extends State<SignInView> {
                         TextField(
                           onChanged: (value) => email = value,
                           decoration: InputDecoration(
-                            hintText: 'Username',
+                            hintText: 'Email',
                             filled: true,
                             fillColor: Colors.white,
                             border: OutlineInputBorder(

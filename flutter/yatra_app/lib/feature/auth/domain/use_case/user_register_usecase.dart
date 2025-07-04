@@ -5,34 +5,31 @@ import 'package:yatra_app/core/error/failure.dart';
 import 'package:yatra_app/feature/auth/domain/entity/user_entity.dart';
 import 'package:yatra_app/feature/auth/domain/repository/user_repository.dart';
 
-class RegisterUserParams extends Equatable{
+/// Params for registration: full name, email, password
+class RegisterUserParams extends Equatable {
   final String fullName;
   final String email;
   final String password;
-  
+
   const RegisterUserParams({
     required this.fullName,
     required this.email,
-    required this.password
+    required this.password,
   });
 
   const RegisterUserParams.initial({
     required this.fullName,
     required this.email,
-    required this.password
+    required this.password,
   });
-  
+
   @override
-  // TODO: implement props
-  List<Object?> get props => [
-    fullName,
-    email,
-    password
-  ];
+  List<Object?> get props => [fullName, email, password];
 }
 
-
-class UserRegisterUseCase implements UsecaseWithParams<void, RegisterUserParams> {
+/// Use Case class for registering a user
+class UserRegisterUseCase
+    implements UsecaseWithParams<void, RegisterUserParams> {
   final IUserRepository _userRepository;
 
   UserRegisterUseCase({required IUserRepository userRepository})
@@ -40,7 +37,21 @@ class UserRegisterUseCase implements UsecaseWithParams<void, RegisterUserParams>
 
   @override
   Future<Either<Failure, void>> call(RegisterUserParams params) {
-    final userEntity = UserEntity(name: params.fullName, email: params.email, password: params.password);
+    final fullName = params.fullName.trim();
+    final nameParts = fullName.split(' ');
+
+    final firstName = nameParts.first;
+    final lastName = nameParts.length > 1
+        ? nameParts.sublist(1).join(' ')
+        : '';
+
+    final userEntity = UserEntity(
+      name: fullName,
+      email: params.email,
+      password: params.password,
+      firstName: firstName,
+      lastName: lastName,
+    );
 
     return _userRepository.registerUser(userEntity);
   }

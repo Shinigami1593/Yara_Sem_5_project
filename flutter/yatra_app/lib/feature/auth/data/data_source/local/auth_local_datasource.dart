@@ -11,7 +11,7 @@ class UserLocalDataSource implements IUserDataSource {
   UserLocalDataSource({required HiveService hiveService}) : _hiveService = hiveService;
 
   @override
-  Future<void> registerStudent(UserEntity studentData) async {
+  Future<void> register(UserEntity studentData) async {
     try {
       final userHiveModel = UserHiveModel.fromEntity(studentData);
       await _hiveService.register(userHiveModel);
@@ -21,13 +21,13 @@ class UserLocalDataSource implements IUserDataSource {
   }
 
   @override
-  Future<String> loginStudent(String username, String password) async {
+  Future<String> login(String email, String password) async {
     try {
-      final userHiveModel = await _hiveService.login(username, password);
+      final userHiveModel = await _hiveService.login(email, password);
       if (userHiveModel != null && userHiveModel.password == password) {
         return "Login successful";
       } else {
-        throw Exception("Invalid username or password");
+        throw Exception("Invalid email or password");
       }
     } catch (e) {
       throw Exception("Login failed: $e");

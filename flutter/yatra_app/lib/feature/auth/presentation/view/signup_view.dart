@@ -88,7 +88,7 @@ class _SignUpViewState extends State<SignUpView> {
                     TextField(
                       onChanged: (value) => email = value,
                       decoration: InputDecoration(
-                        hintText: 'Phone or Gmail',
+                        hintText: 'Gmail',
                         filled: true,
                         fillColor: Colors.white,
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),

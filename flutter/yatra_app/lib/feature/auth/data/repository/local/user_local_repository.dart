@@ -16,7 +16,7 @@ class UserLocalRepository implements IUserRepository {
   @override
   Future<Either<Failure, void>> registerUser(UserEntity user) async {
     try {
-      await _userLocalDataSource.registerStudent(user);
+      await _userLocalDataSource.register(user);
       return const Right(null);
     } catch (e) {
       return Left(LocalDatabaseFailure(message: e.toString()));
@@ -26,7 +26,7 @@ class UserLocalRepository implements IUserRepository {
   @override
   Future<Either<Failure, String>> loginUser(String email, String password) async {
     try {
-      final result = await _userLocalDataSource.loginStudent(email, password);
+      final result = await _userLocalDataSource.login(email, password);
       return Right(result);
     } catch (e) {
       return Left(LocalDatabaseFailure(message: e.toString()));
