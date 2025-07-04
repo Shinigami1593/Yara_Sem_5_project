@@ -1,8 +1,14 @@
+import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:yatra_app/app/shared_pref/token_shared_pref.dart';
+import 'package:yatra_app/core/network/api_service.dart';
 import 'package:yatra_app/core/network/hive_service.dart';
 import 'package:yatra_app/feature/auth/data/data_source/auth_datasource.dart';
 import 'package:yatra_app/feature/auth/data/data_source/local/auth_local_datasource.dart';
+import 'package:yatra_app/feature/auth/data/data_source/remote/auth_remote_datasource.dart';
 import 'package:yatra_app/feature/auth/data/repository/local/user_local_repository.dart';
+import 'package:yatra_app/feature/auth/data/repository/remote/user_remote_repository.dart';
 import 'package:yatra_app/feature/auth/domain/repository/user_repository.dart';
 import 'package:yatra_app/feature/auth/domain/use_case/user_get_current_usecase.dart';
 import 'package:yatra_app/feature/auth/domain/use_case/user_login_usecase.dart';
@@ -19,9 +25,26 @@ final serviceLocator = GetIt.instance;
 Future<void> initDependencies() async {
   await _initHiveService();
   await _initAuthModule();
+  await _initApiService();
+  await _initSharedPrefs();
   await _initSplashModule();
   await _initHomeModule();
 }
+
+Future<void> _initSharedPrefs() async {
+  final sharedPrefs = await SharedPreferences.getInstance();
+  serviceLocator.registerLazySingleton(() => sharedPrefs);
+  serviceLocator.registerLazySingleton(
+    () => TokenSharedPrefs(
+      sharedPreferences: serviceLocator<SharedPreferences>(),
+    ),
+  );
+}
+
+Future<void> _initApiService() async {
+  serviceLocator.registerLazySingleton(() => ApiService(Dio()));
+}
+
 
 Future<void> _initHiveService() async {
   serviceLocator.registerLazySingleton(() => HiveService());
@@ -34,28 +57,34 @@ Future<void> _initHomeModule() async {
 }
 
 Future<void> _initAuthModule() async {
-  serviceLocator.registerFactory<IUserDataSource>(
+  serviceLocator.registerFactory(
     () => UserLocalDataSource(hiveService: serviceLocator<HiveService>()),
   );
-
-  serviceLocator.registerFactory<IUserRepository>(
-    () => UserLocalRepository(userLocalDataSource: serviceLocator<IUserDataSource>()),
+  serviceLocator.registerFactory(
+    () => UserRemoteDatasource(apiService: serviceLocator<ApiService>()),
   );
 
   serviceLocator.registerFactory(
-    () => UserLoginUseCase(userRepository: serviceLocator<IUserRepository>()),
+    () => UserLocalRepository(userLocalDataSource: serviceLocator<UserLocalDataSource>()),
+  );
+  serviceLocator.registerFactory(
+    () => UserRemoteRepository(userRemoteDatasource: serviceLocator<UserRemoteDatasource>()),
   );
 
   serviceLocator.registerFactory(
-    () => UserRegisterUseCase(userRepository: serviceLocator<IUserRepository>()),
+    () => UserLoginUseCase(userRepository: serviceLocator<UserRemoteRepository>(), tokenSharedPrefs: serviceLocator<TokenSharedPrefs>()),
   );
 
   serviceLocator.registerFactory(
-    () => UserUploadImageUseCase(userRepository: serviceLocator<IUserRepository>()),
+    () => UserRegisterUseCase(userRepository: serviceLocator<UserRemoteRepository>()),
   );
 
   serviceLocator.registerFactory(
-    () => UserGetCurrentUseCase(userRepository: serviceLocator<IUserRepository>()),
+    () => UserUploadImageUseCase(userRepository: serviceLocator<UserRemoteRepository>()),
+  );
+
+  serviceLocator.registerFactory(
+    () => UserGetCurrentUseCase(userRepository: serviceLocator<UserRemoteRepository>()),
   );
 
   serviceLocator.registerFactory(
