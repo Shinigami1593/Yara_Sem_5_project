@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/rendering.dart';
 import 'package:yatra_app/app/shared_pref/token_shared_pref.dart';
 import 'package:yatra_app/app/use_case/use_case.dart';
 import 'package:yatra_app/core/error/failure.dart';
