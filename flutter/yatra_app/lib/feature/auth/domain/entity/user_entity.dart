@@ -8,6 +8,7 @@ class UserEntity extends Equatable {
   final String password;
   final String firstName;
   final String lastName;
+  final String? role;
   final String? image; // Optional, added after login
 
   const UserEntity({
@@ -18,6 +19,7 @@ class UserEntity extends Equatable {
     required this.firstName,
     required this.lastName,
     this.image,
+    this.role
   });
 
   @override
@@ -28,6 +30,7 @@ class UserEntity extends Equatable {
     password,
     firstName,
     lastName,
+    role,
     image,
   ];
 }
