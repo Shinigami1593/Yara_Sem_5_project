@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yatra_app/app/service_locator/service_locator.dart';
 import 'package:yatra_app/feature/auth/domain/use_case/user_login_usecase.dart';
 import 'package:yatra_app/feature/auth/presentation/view_model/login_view_model/login_event.dart';
 import 'package:yatra_app/feature/auth/presentation/view_model/login_view_model/login_state.dart';

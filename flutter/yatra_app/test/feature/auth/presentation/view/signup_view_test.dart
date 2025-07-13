@@ -41,9 +41,15 @@ void main() {
 
   testWidgets('LoginScreen shows SIGN IN button', (WidgetTester tester) async {
     await tester.pumpWidget(const MaterialApp(home: SignInView()));
-
     await tester.pumpAndSettle();
 
     expect(find.widgetWithText(ElevatedButton, 'SIGN IN'), findsOneWidget);
+  });
+
+  testWidgets('Login screen has sign up text button', (WidgetTester tester) async {
+    await tester.pumpWidget(const MaterialApp(home: SignInView()));
+    await tester.pumpAndSettle();
+
+    expect(find.widgetWithText(TextButton, "Don't have an account? Sign up"), findsOneWidget);
   });
 }

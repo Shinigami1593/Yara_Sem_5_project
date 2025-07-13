@@ -46,10 +46,10 @@ void main() {
       verifyNoMoreInteractions(repository);
       verifyNoMoreInteractions(tokenSharedPrefs);
 
-      tearDown(() {
-        reset(repository);
-        reset(tokenSharedPrefs);
-      });
+      // tearDown(() {
+      //   reset(repository);
+      //   reset(tokenSharedPrefs);
+      // });
   });
 
   //when user give invalid credentials:
