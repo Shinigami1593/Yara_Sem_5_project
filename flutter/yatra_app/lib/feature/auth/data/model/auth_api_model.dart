@@ -13,6 +13,9 @@ class UserApiModel extends Equatable {
   final String password;
   final String firstName;
   final String lastName;
+  final String? role;
+  final DateTime? createdAt;
+  final String? profilePicture;
 
   const UserApiModel({
     this.userId,
@@ -21,6 +24,9 @@ class UserApiModel extends Equatable {
     required this.password,
     required this.firstName,
     required this.lastName,
+    this.role = 'user',
+    this.createdAt,
+    this.profilePicture
   });
 
   factory UserApiModel.fromJson(Map<String, dynamic> json) =>
@@ -34,6 +40,9 @@ class UserApiModel extends Equatable {
     required String fullName,
     required String email,
     required String password,
+    String? role,
+    DateTime? createdAt,
+    String? profilePicture
   }) {
     List<String> nameParts = fullName.trim().split(' ');
     String first = nameParts.first;
@@ -45,6 +54,9 @@ class UserApiModel extends Equatable {
       password: password,
       firstName: first,
       lastName: last,
+      role: role,
+      createdAt: createdAt,
+      profilePicture: profilePicture
     );
   }
 
@@ -57,6 +69,9 @@ class UserApiModel extends Equatable {
       password: entity.password,
       firstName: entity.firstName,
       lastName: entity.lastName,
+      role: entity.role,
+      createdAt: entity.createdAt,
+      profilePicture: entity.profilePicture
     );
   }
 
@@ -69,6 +84,9 @@ class UserApiModel extends Equatable {
       password: password,
       firstName: firstName,
       lastName: lastName,
+      role: role,
+      createdAt: createdAt,
+      profilePicture: profilePicture
     );
   }
 
@@ -83,5 +101,5 @@ class UserApiModel extends Equatable {
   }
 
   @override
-  List<Object?> get props => [userId, name, email, password, firstName, lastName];
+  List<Object?> get props => [userId, name, email, password, firstName, lastName, role, createdAt, profilePicture];
 }

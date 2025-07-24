@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yatra_app/feature/home/presentation/view/bottom_navigation/home_view.dart';
-import 'package:yatra_app/feature/home/presentation/view/bottom_navigation/profile.dart';
+import 'package:yatra_app/feature/auth/presentation/view/profile/profile.dart';
 import 'package:yatra_app/feature/home/presentation/view/bottom_navigation/routes_view.dart';
 import 'package:yatra_app/feature/home/presentation/view/bottom_navigation/stops_view.dart';
 // import 'package:yatra_app/view/routes_view.dart';

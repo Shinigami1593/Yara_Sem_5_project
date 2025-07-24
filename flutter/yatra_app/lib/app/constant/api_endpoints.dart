@@ -8,9 +8,10 @@ class ApiEndpoints {
 
   static const String serviceAddress = 'http://10.0.2.2:5050';
 
-  static const String baseUrl = "$serviceAddress/api/v1/auth/";
+  static const String baseUrl = "$serviceAddress/api/v1/";
   
   //Auth
-  static const String login = "users/login";
-  static const String register = "users/signup";
+  static const String login = "auth/users/login";
+  static const String register = "auth/users/signup";
+  static const String getProfile = "auth/users/profile";
 }

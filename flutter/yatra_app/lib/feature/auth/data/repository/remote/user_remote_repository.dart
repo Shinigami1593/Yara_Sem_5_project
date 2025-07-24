@@ -15,8 +15,13 @@ class UserRemoteRepository implements IUserRepository{
 
 
   @override
-  Future<Either<Failure, UserEntity>> getCurrentUser() {
-    throw UnimplementedError();
+  Future<Either<Failure, UserEntity>> getCurrentUser() async{
+    try { 
+      final user = await _userRemoteDatasource.getCurrentUser(); 
+      return Right(user); 
+    } catch (e) { 
+      return Left(RemoteDatabaseFailure(message: e.toString())); 
+    }
   }
 
   @override
@@ -43,7 +48,12 @@ class UserRemoteRepository implements IUserRepository{
   }
 
   @override
-  Future<Either<Failure, String>> uploadProfilePicture(File file) {
-    throw UnimplementedError();
+  Future<Either<Failure, String>> uploadProfilePicture(File file) async{
+    try { 
+      final imageUrl = await _userRemoteDatasource.uploadProfilePicture(file); 
+      return Right(imageUrl); 
+    } catch (e) { 
+      return Left(RemoteDatabaseFailure(message: e.toString())); 
+    } 
   }
 }

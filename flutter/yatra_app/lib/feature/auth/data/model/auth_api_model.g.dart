@@ -13,6 +13,11 @@ UserApiModel _$UserApiModelFromJson(Map<String, dynamic> json) => UserApiModel(
       password: json['password'] as String,
       firstName: json['firstName'] as String,
       lastName: json['lastName'] as String,
+      role: json['role'] as String? ?? 'user',
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
+      profilePicture: json['profilePicture'] as String?,
     );
 
 Map<String, dynamic> _$UserApiModelToJson(UserApiModel instance) =>
@@ -23,4 +28,7 @@ Map<String, dynamic> _$UserApiModelToJson(UserApiModel instance) =>
       'password': instance.password,
       'firstName': instance.firstName,
       'lastName': instance.lastName,
+      'role': instance.role,
+      'createdAt': instance.createdAt?.toIso8601String(),
+      'profilePicture': instance.profilePicture,
     };

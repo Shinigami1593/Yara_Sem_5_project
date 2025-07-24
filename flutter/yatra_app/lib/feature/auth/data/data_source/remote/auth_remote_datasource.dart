@@ -12,8 +12,20 @@ class UserRemoteDatasource implements IUserDataSource{
   UserRemoteDatasource({required ApiService apiService}) : _apiService = apiService;
 
   @override
-  Future<UserEntity> getCurrentUser() {
-    throw UnimplementedError();
+  Future<UserEntity> getCurrentUser() async{
+    try{
+      final response = await _apiService.dio.get(ApiEndpoints.getProfile);
+      if(response.statusCode == 200){
+        final userApiModel = UserApiModel.fromJson(response.data);
+        return userApiModel.toEntity();
+      }else{
+        throw Exception('Failed to fetch user: ${response.statusMessage}');
+      }
+    }on DioException catch(e){
+      throw Exception('Failed to fetch user: ${e.error}');
+    }catch(e){
+      throw Exception('Failed to get user: $e');
+    }
   }
 
   @override
@@ -59,7 +71,20 @@ class UserRemoteDatasource implements IUserDataSource{
   }
 
   @override
-  Future<String> uploadProfilePicture(File file) {
-    throw UnimplementedError();
+  Future<String> uploadProfilePicture(File file) async{
+    try { 
+      final formData = FormData.fromMap({ 'profilePicture': await MultipartFile.fromFile(file.path, filename: file.path.split('/').last), }); 
+      final response = await _apiService.dio.put( ApiEndpoints.getProfile, data: formData, ); 
+      if (response.statusCode == 200) { 
+        final userApiModel = UserApiModel.fromJson(response.data['user']); 
+        return userApiModel.profilePicture ?? ''; 
+      } else { 
+        throw Exception('Failed to upload profile picture: ${response.statusMessage}'); 
+      } 
+    } on DioException catch (e) { 
+      throw Exception('Failed to upload profile picture: ${e.error}'); 
+    } catch (e) { 
+      throw Exception('Failed to upload profile picture: $e'); 
+    } 
   }
 }
