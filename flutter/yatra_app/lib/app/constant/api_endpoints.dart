@@ -6,7 +6,7 @@ class ApiEndpoints {
   static const recieveTimeout = Duration(seconds: 1000);
 
 
-  static const String serviceAddress = 'http://10.0.2.2:5050';
+  static const String serviceAddress = 'http://192.168.1.77:5050';
 
   static const String baseUrl = "$serviceAddress/api/v1/";
   
@@ -14,4 +14,5 @@ class ApiEndpoints {
   static const String login = "auth/users/login";
   static const String register = "auth/users/signup";
   static const String getProfile = "auth/users/profile";
-}
+  static const String routes = "auth/users/routes";
+} 
