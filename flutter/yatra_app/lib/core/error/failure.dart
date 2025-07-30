@@ -34,7 +34,7 @@ class AuthFailure extends Failure {
 }
 
 class NetworkFailure extends Failure {
-  const NetworkFailure({required super.message});
+  const NetworkFailure(String s, {required super.message});
 }
 
 class UnknownFailure extends Failure {
