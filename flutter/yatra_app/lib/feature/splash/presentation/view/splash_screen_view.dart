@@ -23,7 +23,7 @@ class SplashScreenView extends StatelessWidget {
             splashIconSize: 200,
             backgroundColor: Colors.white,
             splashTransition: SplashTransition.fadeTransition,
-            duration: 3000,
+            duration: 5000,
             nextScreen: const SignInView(),
             pageTransitionType: PageTransitionType.bottomToTop,
           );
