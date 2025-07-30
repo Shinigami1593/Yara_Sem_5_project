@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yatra_app/app/themes/dashboard_theme.dart';
 
-class RoutesView extends StatelessWidget {
-  const RoutesView({super.key});
+class TripsView extends StatelessWidget {
+  const TripsView({super.key});
 
   @override
   Widget build(BuildContext context) {

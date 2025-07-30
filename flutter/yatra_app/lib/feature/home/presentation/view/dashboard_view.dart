@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yatra_app/app/service_locator/service_locator.dart';
+import 'package:yatra_app/feature/auth/presentation/view_model/profile_view_model/profile_view_model.dart';
 import 'package:yatra_app/feature/home/presentation/view/bottom_navigation/home_view.dart';
 import 'package:yatra_app/feature/auth/presentation/view/profile/profile.dart';
 import 'package:yatra_app/feature/home/presentation/view/bottom_navigation/routes_view.dart';
-import 'package:yatra_app/feature/home/presentation/view/bottom_navigation/stops_view.dart';
+import 'package:yatra_app/feature/home/presentation/view_model/route/route_viewmodel.dart';
 // import 'package:yatra_app/view/routes_view.dart';
 
 
@@ -16,12 +19,25 @@ class DashboardView extends StatefulWidget {
 class _DashboardViewState extends State<DashboardView> {
   int _selectedIndex = 0;
 
-  final List<Widget> _pages = const [
-    HomeView(),
-    RoutesView(),
-    StopsView(),
-    ProfileView()
-  ];
+  // Remove 'const' and use function to inject BLoC
+  Widget _buildPage(int index) {
+    switch (index) {
+      case 0:
+        return BlocProvider(
+          create: (_) => serviceLocator<RouteViewModel>() ,
+          child: const RoutesView(),
+        );
+      case 1:
+        return const TripsView();
+      case 2:
+        return BlocProvider(
+          create: (_) => serviceLocator<ProfileViewModel>(),
+          child: const ProfileView(),
+        );
+      default:
+        return const SizedBox();
+    }
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -32,7 +48,7 @@ class _DashboardViewState extends State<DashboardView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[_selectedIndex],
+      body: _buildPage(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
@@ -47,11 +63,7 @@ class _DashboardViewState extends State<DashboardView> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.alt_route),
-            label: 'Routes',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.book),
-            label: 'Bookings',
+            label: 'Trips',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
