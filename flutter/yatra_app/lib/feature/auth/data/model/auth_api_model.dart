@@ -9,8 +9,8 @@ class UserApiModel extends Equatable {
   @JsonKey(name: '_id')
   final String? userId;
   final String name;
-  final String email;
-  final String password;
+  final String? email;
+  final String? password;
   final String firstName;
   final String lastName;
   final String? role;
@@ -20,8 +20,8 @@ class UserApiModel extends Equatable {
   const UserApiModel({
     this.userId,
     required this.name,
-    required this.email,
-    required this.password,
+    this.email,
+    this.password,
     required this.firstName,
     required this.lastName,
     this.role = 'user',
@@ -38,8 +38,8 @@ class UserApiModel extends Equatable {
   factory UserApiModel.fromFullName({
     String? userId,
     required String fullName,
-    required String email,
-    required String password,
+    String? email,
+    String? password,
     String? role,
     DateTime? createdAt,
     String? profilePicture

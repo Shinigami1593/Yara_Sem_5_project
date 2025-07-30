@@ -54,4 +54,10 @@ class UserLocalDataSource implements IUserDataSource {
       throw Exception("Failed to get current user: $e");
     }
   }
+  
+  @override
+  Future<String> updateProfile(UserEntity updatedUser) {
+    // TODO: implement updateProfile
+    throw UnimplementedError();
+  }
 }

@@ -52,4 +52,16 @@ class UserLocalRepository implements IUserRepository {
       return Left(LocalDatabaseFailure(message: e.toString()));
     }
   }
+  
+  @override
+  Future<Either<Failure, UserEntity>> updateProfile(UserEntity updatedUser) {
+    // TODO: implement updateProfile
+    throw UnimplementedError();
+  }
+  
+  // @override
+  // Future<Either<Failure, void>> logoutUser() {
+  //   // TODO: implement logoutUser
+  //   throw UnimplementedError();
+  // }
 }

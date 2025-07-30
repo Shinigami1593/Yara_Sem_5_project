@@ -19,8 +19,8 @@ class UserHiveModelAdapter extends TypeAdapter<UserHiveModel> {
     return UserHiveModel(
       userId: fields[0] as String?,
       name: fields[1] as String,
-      email: fields[2] as String,
-      password: fields[3] as String,
+      email: fields[2] as String?,
+      password: fields[3] as String?,
     );
   }
 

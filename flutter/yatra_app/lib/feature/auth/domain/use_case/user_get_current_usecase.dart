@@ -4,6 +4,7 @@ import 'package:yatra_app/core/error/failure.dart';
 import 'package:yatra_app/feature/auth/domain/entity/user_entity.dart';
 import 'package:yatra_app/feature/auth/domain/repository/user_repository.dart';
 
+
 class UserGetCurrentUseCase implements UsecaseWithoutParams<UserEntity> {
   final IUserRepository _userRepository;
 
@@ -11,7 +12,7 @@ class UserGetCurrentUseCase implements UsecaseWithoutParams<UserEntity> {
       : _userRepository = userRepository;
 
   @override
-  Future<Either<Failure, UserEntity>> call() {
-    return _userRepository.getCurrentUser();
+  Future<Either<Failure, UserEntity>> call() async {
+    return await _userRepository.getCurrentUser();
   }
 }

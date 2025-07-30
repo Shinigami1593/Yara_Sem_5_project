@@ -5,7 +5,7 @@ import 'package:yatra_app/feature/auth/presentation/view_model/login_view_model/
 
 class LoginViewModel extends Bloc<LoginEvent, LoginState> {
   final UserLoginUseCase userLoginUseCase;
-
+  
   LoginViewModel(this.userLoginUseCase) : super(LoginState.initial()) {
     on<LoginWithEmailAndPasswordEvent>(_onLoginWithEmailAndPassword);
   }
@@ -15,10 +15,11 @@ class LoginViewModel extends Bloc<LoginEvent, LoginState> {
     Emitter<LoginState> emit,
   ) async {
     emit(state.copyWith(isLoading: true, errorMessage: null));
+    
     final result = await userLoginUseCase(
       LoginParams(email: event.username, password: event.password),
     );
-
+    
     result.fold(
       (failure) {
         emit(state.copyWith(
@@ -28,10 +29,13 @@ class LoginViewModel extends Bloc<LoginEvent, LoginState> {
         ));
       },
       (token) {
+        // Store token and email in the state for biometric authentication
         emit(state.copyWith(
           isLoading: false,
           isSuccess: true,
           errorMessage: null,
+          authToken: token.toString(), // Convert token to string
+          userEmail: event.username, // Store the user's email from the event
         ));
       },
     );

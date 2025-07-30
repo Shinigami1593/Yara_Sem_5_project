@@ -14,16 +14,16 @@ class UserHiveModel extends Equatable {
   final String name;
 
   @HiveField(2)
-  final String email;
+  final String? email;
 
   @HiveField(3)
-  final String password;
+  final String? password;
 
   UserHiveModel({
     String? userId,
     required this.name,
-    required this.email,
-    required this.password,
+    this.email,
+    this.password,
   }) : userId = userId ?? const Uuid().v4();
 
   // Initial default values
