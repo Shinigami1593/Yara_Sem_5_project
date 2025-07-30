@@ -58,6 +58,18 @@ dependencies:
   bloc_test: ^10.0.0
   flutter_lints: ^6.0.0
   flutter_launcher_icons: ^0.14.4
+  flutter_osm_plugin: ^1.4.1
+  google_maps_flutter: ^2.12.3
+  http: ^1.4.0
+  latlong2: ^0.9.1
+  geocoding: ^4.0.0
+  geolocator: ^14.0.2
+  flutter_map: ^8.1.1
+  # flutter_secure_storage: ^7.0.1
+  local_auth: ^2.3.0
+  # local_auth_android: ^1.0.50
+  # local_auth_ios: ^1.1.7
+  # local_auth_platform_interface: ^1.0.10
 
 dev_dependencies:
   flutter_test:
