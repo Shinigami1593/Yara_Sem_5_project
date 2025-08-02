@@ -182,5 +182,20 @@ class UserRemoteDatasource implements IUserDataSource {
       throw Exception('Failed to update profile: $e');
     }
   }
+  
+  @override
+  Future<void> logout() async {
+    try {
+      // Optionally call a logout endpoint if your backend requires it
+      // For now, just clear the token locally
+      final result = await _tokenSharedPrefs.saveToken("");
+      result.fold(
+        (failure) => throw Exception('Failed to clear token: $failure'),
+        (_) => null,
+      );
+    } catch (e) {
+      throw Exception('Failed to logout: $e');
+    }
+  }
 
 }

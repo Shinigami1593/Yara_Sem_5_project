@@ -59,6 +59,12 @@ class UserLocalRepository implements IUserRepository {
     throw UnimplementedError();
   }
   
+  @override
+  Future<Either<Failure, void>> logoutUser() {
+    // TODO: implement logoutUser
+    throw UnimplementedError();
+  }
+  
   // @override
   // Future<Either<Failure, void>> logoutUser() {
   //   // TODO: implement logoutUser

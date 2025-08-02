@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:dartz/dartz.dart';
 import 'package:yatra_app/app/shared_pref/token_shared_pref.dart';
 import 'package:yatra_app/core/error/failure.dart';
@@ -9,14 +8,13 @@ import 'package:yatra_app/feature/auth/domain/repository/user_repository.dart';
 
 class UserRemoteRepository implements IUserRepository {
   final UserRemoteDatasource _userRemoteDatasource;
-  // final TokenSharedPrefs _tokenSharedPrefs;
+  final TokenSharedPrefs _tokenSharedPrefs;
 
-  
   UserRemoteRepository({
     required UserRemoteDatasource userRemoteDatasource,
-    required TokenSharedPrefs tokenSharedPrefs
-  }) : _userRemoteDatasource = userRemoteDatasource;
-        // _tokenSharedPrefs = tokenSharedPrefs;
+    required TokenSharedPrefs tokenSharedPrefs,
+  })  : _userRemoteDatasource = userRemoteDatasource,
+        _tokenSharedPrefs = tokenSharedPrefs;
 
   @override
   Future<Either<Failure, UserEntity>> getCurrentUser() async {
@@ -67,14 +65,14 @@ class UserRemoteRepository implements IUserRepository {
       return Left(RemoteDatabaseFailure(message: e.toString()));
     }
   }
-  
-  // @override
-  // Future<Either<Failure, void>> logoutUser() async{
-  //   try {
-  //     await _tokenSharedPrefs.clearToken();
-  //     return const Right(null);
-  //   } catch (e) {
-  //     return Left(AuthFailure(message: 'Logout failed: ${e.toString()}'));
-  //   }
-  // }
+
+  @override
+  Future<Either<Failure, void>> logoutUser() async {
+    try {
+      await _userRemoteDatasource.logout();
+      return const Right(null);
+    } catch (e) {
+      return Left(RemoteDatabaseFailure(message: e.toString()));
+    }
+  }
 }
