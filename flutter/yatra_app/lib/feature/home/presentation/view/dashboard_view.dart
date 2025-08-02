@@ -4,8 +4,9 @@ import 'package:yatra_app/app/service_locator/service_locator.dart';
 import 'package:yatra_app/feature/auth/presentation/view_model/profile_view_model/profile_view_model.dart';
 import 'package:yatra_app/feature/home/presentation/view/bottom_navigation/home_view.dart';
 import 'package:yatra_app/feature/auth/presentation/view/profile/profile.dart';
-import 'package:yatra_app/feature/home/presentation/view/bottom_navigation/routes_view.dart';
+import 'package:yatra_app/feature/trips/presentation/view/routes_view.dart';
 import 'package:yatra_app/feature/home/presentation/view_model/route/route_viewmodel.dart';
+import 'package:yatra_app/feature/trips/presentation/view_model/trip_view_model.dart';
 // import 'package:yatra_app/view/routes_view.dart';
 
 
@@ -28,7 +29,10 @@ class _DashboardViewState extends State<DashboardView> {
           child: const RoutesView(),
         );
       case 1:
-        return const TripsView();
+        return BlocProvider(
+          create: (_) => serviceLocator<TripViewModel>() ,
+          child: const TripsView(),
+        );
       case 2:
         return BlocProvider(
           create: (_) => serviceLocator<ProfileViewModel>(),
