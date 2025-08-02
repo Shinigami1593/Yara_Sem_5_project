@@ -21,5 +21,5 @@ abstract interface class IUserRepository {
   Future<Either<Failure, void>> updateProfile(UserEntity updatedUser);
 
   //logoutUSer
-  // Future<Either<Failure,void>> logoutUser();
+  Future<Either<Failure,void>> logoutUser();
 }
