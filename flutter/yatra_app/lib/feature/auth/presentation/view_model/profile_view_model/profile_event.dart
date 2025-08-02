@@ -1,5 +1,4 @@
-// lib/features/profile/presentation/bloc/profile_event.dart
-
+import 'dart:io';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +9,6 @@ sealed class ProfileEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-// Event to fetch the current user's profile
 class GetProfileEvent extends ProfileEvent {
   final BuildContext context;
 
@@ -20,13 +18,12 @@ class GetProfileEvent extends ProfileEvent {
   List<Object?> get props => [context];
 }
 
-// Event to update the user's profile
 class UpdateProfileEvent extends ProfileEvent {
   final BuildContext context;
   final String name;
   final String firstName;
   final String lastName;
-  final String? profilePicture; // Can be a file path or URL string
+  final File? profilePicture; // Use File? for local file
 
   const UpdateProfileEvent({
     required this.context,
