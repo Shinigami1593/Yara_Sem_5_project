@@ -15,4 +15,5 @@ class ApiEndpoints {
   static const String register = "auth/users/signup";
   static const String getProfile = "auth/users/profile";
   static const String routes = "auth/users/routes";
+  static const String trips = "trip";
 } 
