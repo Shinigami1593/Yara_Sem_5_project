@@ -67,6 +67,7 @@ dependencies:
   flutter_map: ^8.1.1
   # flutter_secure_storage: ^7.0.1
   local_auth: ^2.3.0
+  sensors_plus: ^6.1.1
   # local_auth_android: ^1.0.50
   # local_auth_ios: ^1.1.7
   # local_auth_platform_interface: ^1.0.10
